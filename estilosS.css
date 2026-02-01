@@ -1,0 +1,196 @@
+
+:root {
+  --navbar-height: 120px;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bodyA {
+  font-family: Arial, sans-serif;
+  background: #f4f4f9;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+.navbar {
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 10;
+}
+
+.navbar .logo-left {
+  position: relative;
+  left: 70px;
+}
+
+.navbar .logo-right {
+  position: relative;
+  left: -60px;
+}
+
+.navbar .logo-left img,
+.navbar .logo-right img {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.navbar .menu {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar .menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .menu ul li a {
+  display: inline-block;
+  padding: 10px 25px;
+  text-decoration: none;
+  color: black;
+  background: transparent;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat Condensed', sans-serif;
+  font-weight: 700;
+}
+
+.navbar .menu ul li a:hover {
+  background: black;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.navbar .menu ul li a.active {
+  background: black;
+  color: white;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   BOTÓN IDIOMA
+========================= */
+.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #3c4b37, #000000);
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-family: 'Montserrat Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.language-btn i {
+  font-size: 1.1rem;
+  transition: transform 0.5s ease;
+}
+
+.language-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.language-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+.main-container {
+  display: flex;
+  height: calc(100vh - var(--navbar-height));
+  margin-top: var(--navbar-height);
+}
+
+/* =========================
+   SECCIONES 50 / 50
+========================= */
+.half {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: white;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+.half h2 {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  z-index: 2;
+}
+
+/* =========================
+   FONDOS DE IMAGEN
+========================= */
+.vigente {
+  background: url("imagenesAlumnos/vigente.jpg") center / cover no-repeat;
+}
+
+.graduado {
+  background: url("imagenesAlumnos/graduado.jpg") center / cover no-repeat;
+}
+
+/* =========================
+   OVERLAY + HOVER
+========================= */
+.half::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease;
+}
+
+.half:hover::after {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .half {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .half h2 {
+    font-size: 1.5rem;
+  }
+}

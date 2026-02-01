@@ -1,0 +1,28 @@
+{
+  "title": "DRA. MIREYA BURGOS",
+  "subtitle": "Profesora Investigadora",
+  "description": "Investigadora Nacional Nivel I, especializada en sistemática, evolución y genética de poblaciones de plantas. Mi trabajo se enfoca en la conservación y aprovechamiento de la biodiversidad vegetal de México, integrando investigación, docencia y formación de nuevos especialistas.",
+  "button": "Leer más",
+  "carousel": [
+    "imagenesIndex/planta1.png",
+    "imagenesIndex/planta2.png",
+    "imagenesIndex/planta3.png",
+    "imagenesIndex/planta1.png",
+    "imagenesIndex/planta2.png",
+    "imagenesIndex/planta3.png"
+  ],
+  "collage": [
+    "imagenesIndex/planta1.png",
+    "imagenesIndex/planta2.png",
+    "imagenesIndex/planta3.png",
+    "imagenesIndex/planta1.png",
+    "imagenesIndex/planta2.png",
+    "imagenesIndex/planta3.png"
+  ],
+  "keywords": [
+    "🌿 Dataciones Moleculares",
+    "🌿 Taxonomía",
+    "🌿 Evolución",
+    "🌿 Curso de Botánica Sistemática"
+  ]
+}

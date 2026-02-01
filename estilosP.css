@@ -1,0 +1,380 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  background: #f9fff6;
+  color: #333;
+}
+
+
+    /* ==== NAVBAR ==== */
+    .navbar {
+      width: 100%;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      z-index: 10;
+    }
+
+    .navbar .logo-left { position: relative; left: 70px; }
+    .navbar .logo-right { position: relative; left: -60px; }
+
+    .navbar .logo-left img,
+    .navbar .logo-right img {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .navbar .menu { display: flex; justify-content: flex-start; }
+    .navbar .menu ul { list-style: none; display: flex; gap: 20px; }
+    .navbar .menu ul li a {
+      display: inline-block;
+      padding: 10px 25px;
+      text-decoration: none;
+      color: black;
+      background: transparent;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat Condensed', sans-serif;
+      font-weight: 700;
+    }
+
+.navbar .menu ul li a:hover {
+  background: black;   /* Fondo negro */
+  color: white;        /* Texto blanco */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.navbar .menu ul li a.active {
+  background: black;
+  color: white;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+    /* ==== BOTÓN DE IDIOMA ==== */
+    .language-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #3c4b37, #000000);
+      color: white !important;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-family: 'Montserrat Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    .language-btn i {
+      font-size: 1.1rem;
+      transition: transform 0.5s ease;
+    }
+    .language-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .language-btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .rotate {
+      transform: rotate(360deg);
+    }
+
+    /* ==== HEADER ==== */
+    header {
+      position: relative;
+      width: 100%;
+      height: 700px;
+      background: url('imagenesIndex/encabezado1.png') no-repeat top center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /*contenido del cuadrado*/
+
+header .header-content {
+  position: relative;   /* importante para que el ::before se posicione */
+  padding: 20px 15px;
+  max-width: 650px;
+  text-align: center;
+  background: transparent;
+  z-index: 1; /* asegura que el contenido quede por encima */
+}
+
+header .header-content::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  height: 130%;
+  transform: translate(-50%, -50%);
+  
+  /* Fondo tipo destello difuminado */
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+
+  filter: blur(40px);   /* difumina el destello */
+  border-radius: 50%;   /* forma orgánica */
+  z-index: -1;          /* queda detrás del texto, pero dentro del contenedor */
+}
+
+
+    header .header-content h1 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;  /* negrita */
+      font-style: italic; /* inclina el texto hacia la derecha */
+      font-size: 3rem;
+      color: #3c4b37;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+      position: relative;
+      top: 15px;
+    }
+
+    header .header-content p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: #ffffff;
+      margin-bottom: 15px;
+      position: relative;
+      top: -25px;
+    } 
+
+header .header-content .descripcion {
+  font-family: Arial, sans-serif;
+  font-size: 1.3rem; /* Aumenta tamaño */
+  color: #000000; /* Blanco para resaltar */
+  font-weight: bold;
+  max-width: 700px;
+  line-height: 1.8;
+  margin: 0 auto 20px auto;
+  position: relative;
+  top: -20px;
+
+  /* Para que no se pierda con el fondo */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+
+    header .header-content button {
+      background: black;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      position: relative;
+      top: -10px;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat Condensed', sans-serif;
+      font-weight: 700;
+    }
+    header .header-content button:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+    header .header-content button:active {
+      transform: translateY(1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+
+
+    /*carrusel*/
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  max-width: 100%; /* opcional para que no sea demasiado ancho */
+  margin: 0 auto;
+  margin-top: -250px; /* sigue montado sobre el header */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible; /* para que no corte las imágenes grandes */
+  z-index: 2;
+  padding-top: 50px; /* espacio superior opcional */
+  padding-bottom: 50px; /* espacio inferior opcional */
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  width: 80%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel img {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  transition: transform 0.5s, opacity 0.5s;
+  opacity: 0;
+  object-fit: cover;
+  object-position: left center;
+  left: 40%;
+  transform: translateX(-50%);
+}
+
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+button.prev { left: 20px; }
+button.next { right: 20px; }
+
+/*collage*/
+
+.collage-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 300px;
+  margin: 400px auto;
+  width: 90%;
+  height: 1000px;          /* 👈 altura visible (ajústala a tu gusto) */
+  overflow: hidden;       /* 👈 oculta lo que se salga */
+  z-index: 2;
+}
+
+.collage-track {
+  display: flex;
+  flex-direction: column;
+  animation: scrollDown 10s linear infinite;
+}
+
+.collage-track1 {
+  display: flex;
+  flex-direction: column;
+  animation: scrollDown1 10s linear infinite;
+}
+
+.collage {
+  display: flex;
+  gap: 20px;
+}
+
+.collage .column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.collage img {
+  width: 260px;
+  height: 440px; /* rectangular vertical */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.collage img:hover {
+  transform: scale(1.05);
+}
+
+.highlights {
+  max-width: 250px;
+}
+
+.highlights h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.highlights ul {
+  list-style: none;
+  padding: 0;
+}
+
+.highlights li {
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #333;
+}
+
+
+/*columna 1 y 3*/
+
+/* Animación estilo escalera eléctrica */
+@keyframes scrollDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/*columna 2*/
+
+@keyframes scrollDown1 {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+/* Footer */
+footer {
+  background: #2d572c;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}

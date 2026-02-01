@@ -1,0 +1,171 @@
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+    /* ==== NAVBAR ==== */
+    .navbar {
+      width: 100%;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      z-index: 10;
+    }
+
+    .navbar .logo-left { position: relative; left: 70px; }
+    .navbar .logo-right { position: relative; left: -60px; }
+
+    .navbar .logo-left img,
+    .navbar .logo-right img {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .navbar .menu { display: flex; justify-content: flex-start; }
+    .navbar .menu ul { list-style: none; display: flex; gap: 20px; }
+    .navbar .menu ul li a {
+      display: inline-block;
+      padding: 10px 25px;
+      text-decoration: none;
+      color: black;
+      background: transparent;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat Condensed', sans-serif;
+      font-weight: 700;
+    }
+
+.navbar .menu ul li a:hover {
+  background: black;   /* Fondo negro */
+  color: white;        /* Texto blanco */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.navbar .menu ul li a.active {
+  background: black;
+  color: white;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+    /* ==== BOTÓN DE IDIOMA ==== */
+    .language-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #3c4b37, #000000);
+      color: white !important;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-family: 'Montserrat Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    .language-btn i {
+      font-size: 1.1rem;
+      transition: transform 0.5s ease;
+    }
+    .language-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .language-btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .rotate {
+      transform: rotate(360deg);
+    }
+
+/* =========================
+   BODY
+========================= */
+
+
+
+.cursos-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+}
+
+.cursos-card {
+  background: white;
+  width: 70%;
+  max-width: 200%;
+  padding: 10%;
+  padding-top: 4%;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  text-align: left;
+  position: relative;
+}
+
+.cursos-card h2 {
+  background: linear-gradient(135deg, #3c4b37, #000);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  display: inline-block;
+  font-family: 'Montserrat Condensed', sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px; 
+}
+
+.progress-line {
+  width: 420px;
+  height: 4px;
+  background: linear-gradient(900deg, #3c4b37, #000);
+  border-radius: 10px;
+  margin: 6px 0 25px 20px;
+  animation: loadLine 1.5s ease-out;
+}
+
+@keyframes loadLine {
+  from { width: 0; }
+  to { width: 420px; }
+}
+
+.cursos-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Montserrat Condensed', sans-serif;
+}
+
+.cursos-table th,
+.cursos-table td {
+  padding: 14px;
+  text-align: center;
+  border: none;
+}
+
+.cursos-table thead th {
+  font-weight: 700;
+  color: #3c4b37;
+  font-size: 1.05rem;
+}
+
+.cursos-table tbody tr {
+  transition: 0.3s ease;
+}
+
+.cursos-table tbody tr:hover {
+  background: rgba(60, 75, 55, 0.08);
+  border-radius: 12px;
+}
