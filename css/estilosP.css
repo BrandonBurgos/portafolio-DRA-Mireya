@@ -197,7 +197,7 @@ header .header-content button:active {
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
   max-width: 100%;
   margin: 0 auto;
   margin-top: -250px;
@@ -223,6 +223,9 @@ header .header-content button:active {
 
 .carousel-item {
   position: relative;
+  left: -10%;
+  top: -10%;
+  transform: translate(-50%, -50%);
 }
 
 .carousel img {
@@ -237,7 +240,7 @@ header .header-content button:active {
   opacity: 0;
   left: 40%;
   transform: translateX(-50%);
-  background: #e7ece3;
+  background: #e7ece3;  
 }
 
 button.prev,
