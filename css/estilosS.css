@@ -155,11 +155,11 @@
    FONDOS DE IMAGEN
 ========================= */
 .vigente {
-  background: url("imagenesAlumnos/vigente.jpg") center / cover no-repeat;
+  background: url("../imagenesAlumnos/vigente.jpg") center / cover no-repeat;
 }
 
 .graduado {
-  background: url("imagenesAlumnos/graduado.jpg") center / cover no-repeat;
+  background: url("../imagenesAlumnos/graduado.jpg") center / cover no-repeat;
 }
 
 /* =========================

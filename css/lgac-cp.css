@@ -1,0 +1,557 @@
+/* =========================
+   RESET
+========================= */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --bg: #f2f2f0;
+  --olive: #6f8467;
+  --olive-dark: #5f7558;
+  --black: #111111;
+  --footer-overlay: rgba(0,0,0,.52);
+}
+
+html, body{
+  width: 100%;
+  min-height: 100%;
+}
+
+body{
+  background: var(--bg);
+  color: var(--black);
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar{
+  width: 100%;
+  position: absolute;
+  top: 18px;
+  left: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 120px 1fr 170px;
+  align-items: center;
+  padding: 0 34px;
+}
+
+.logo-left,
+.logo-right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.logo-left img{
+  width: 66px;
+  height: 66px;
+  object-fit: contain;
+}
+
+.logo-right img:nth-child(1){
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.logo-right img:nth-child(2){
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+}
+
+.menu ul{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menu ul li a{
+  text-decoration: none;
+  color: #314130;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transition: .25s ease;
+}
+
+.menu ul li a:hover{
+  background: #000;
+  color: #fff;
+}
+
+.menu ul li a.active{
+  background: #000;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(0,0,0,.18);
+}
+
+/* =========================
+   SECCIÓN
+========================= */
+.lgac-page{
+  min-height: 100vh;
+}
+
+.lgac-section{
+  min-height: 100vh;
+  padding-top: 145px;
+  padding-bottom: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lgac-content{
+  width: min(1080px, calc(100% - 80px));
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+/* =========================
+   TEXTO IZQUIERDA
+========================= */
+.lgac-text{
+  position: relative;
+  padding-left: 24px;
+  z-index: 3;
+}
+
+.lgac-text h1{
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2rem, 2.4vw, 3rem);
+  line-height: 1.22;
+  letter-spacing: 1.1px;
+  font-weight: 500;
+  color: var(--olive-dark);
+  text-transform: none;
+  max-width: 520px;
+}
+
+.lgac-link{
+  display: inline-block;
+  margin-top: 12px;
+  color: #96b13f;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.lgac-link:hover{
+  text-decoration: underline;
+}
+
+.title-line{
+  width: 280px;
+  height: 10px;
+  background: #7f966f;
+  margin: 10px 0 24px;
+}
+
+.lgac-text p{
+  max-width: 470px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.22rem;
+  line-height: 1.38;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   DECORACIÓN IZQUIERDA ABAJO
+========================= */
+.left-deco{
+  position: relative;
+  width: 300px;
+  height: 120px;
+  margin-top: 22px;
+}
+
+.left-deco-box{
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+  width: 200px;
+  height: 65px;
+  background: #6f8567;
+}
+
+.left-deco-outline{
+  position: absolute;
+  left: 148px;
+  bottom: 44px;
+  width: 94px;
+  height: 58px;
+  border: 3px solid #111;
+}
+
+.left-deco-line{
+  position: absolute;
+  height: 3px;
+  background: #111;
+}
+
+.line-a{
+  width: 120px;
+  left: -6px;
+  bottom: 10px;
+}
+
+.line-b{
+  width: 3px;
+  height: 52px;
+  left: -6px;
+  bottom: 10px;
+}
+
+/* =========================
+   VISUAL DERECHA
+========================= */
+.lgac-visual{
+  position: relative;
+  min-height: 610px;
+  z-index: 2;
+}
+
+.green-band{
+  position: absolute;
+  left: 14px;
+  top: 214px;
+  width: 100%;
+  max-width: 620px;
+  height: 143px;
+  background: #82957a;
+  z-index: 1;
+}
+
+.portrait-wrap{
+  position: absolute;
+  right: 70px;
+  top: 10px;
+  width: 450px;
+  z-index: 3;
+}
+
+.portrait-wrap img{
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.frame{
+  position: absolute;
+  border: 3px solid #111;
+  z-index: 2;
+}
+
+.frame-1{
+  right: 20px;
+  top: 120px;
+  width: 92px;
+  height: 436px;
+  border-left: none;
+  border-top: none;
+}
+
+.frame-2{
+  left: 0;
+  bottom: 40px;
+  width: 510px;
+  height: 3px;
+  background: #111;
+  border: none;
+  box-shadow: 14px 14px 0 0 #111;
+}
+
+/* =========================
+   CURVAS / TRAZOS
+========================= */
+.curve{
+  position: absolute;
+  border: 2.5px solid #111;
+  border-color: #111 transparent transparent transparent;
+  border-radius: 50%;
+  z-index: 2;
+  opacity: .85;
+}
+
+.curve-1{
+  width: 290px;
+  height: 150px;
+  right: 50px;
+  top: 165px;
+  transform: rotate(-18deg);
+}
+
+.curve-2{
+  width: 245px;
+  height: 130px;
+  right: 46px;
+  top: 188px;
+  transform: rotate(-10deg);
+}
+
+.curve-3{
+  width: 210px;
+  height: 112px;
+  right: 68px;
+  top: 208px;
+  transform: rotate(-1deg);
+}
+
+/* =========================
+   ESTRELLAS Y ACENTOS
+========================= */
+.star{
+  position: absolute;
+  font-size: 4rem;
+  color: #111;
+  z-index: 4;
+  line-height: 1;
+}
+
+.star-1{
+  left: 22px;
+  top: 304px;
+  transform: rotate(10deg);
+}
+
+.star-2{
+  right: 6px;
+  top: 198px;
+  transform: rotate(-8deg);
+}
+
+.dot-accent{
+  position: absolute;
+  right: 120px;
+  top: 86px;
+  width: 12px;
+  height: 38px;
+  border-radius: 999px;
+  background: #000;
+  z-index: 5;
+}
+
+.small-dashes{
+  position: absolute;
+  left: 56px;
+  top: 258px;
+  width: 12px;
+  height: 46px;
+  z-index: 4;
+}
+
+.small-dashes::before,
+.small-dashes::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 12px;
+  height: 3px;
+  background: #111;
+  box-shadow: 0 12px 0 #111, 0 24px 0 #111;
+}
+
+.small-dashes::after{
+  display: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer{
+  position: relative;
+  min-height: 230px;
+  background: url("../imagenesIndex/footer-bg.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.footer::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--footer-overlay);
+  z-index: 1;
+}
+
+.footer-cut{
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 78px;
+  background: var(--bg);
+  clip-path: polygon(
+    0 100%, 0 42%, 4% 34%, 8% 38%, 12% 35%, 18% 43%, 24% 30%, 29% 33%, 34% 22%,
+    39% 35%, 46% 20%, 53% 34%, 60% 23%, 69% 40%, 76% 34%, 83% 44%, 90% 38%, 97% 48%, 100% 43%, 100% 100%
+  );
+  z-index: 2;
+}
+
+.footer-content{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  padding: 46px 20px 24px;
+  width: min(900px, 92%);
+}
+
+.footer-content h2{
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.footer-content p{
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1050px){
+  .lgac-content{
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .lgac-text{
+    padding-left: 0;
+  }
+
+  .lgac-text h1,
+  .lgac-text p{
+    max-width: 100%;
+  }
+
+  .lgac-visual{
+    min-height: 560px;
+  }
+
+  .portrait-wrap{
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .green-band{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .star-1{
+    left: 70px;
+  }
+
+  .frame-2{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 780px){
+  .navbar{
+    position: relative;
+    top: 0;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px 12px 0;
+  }
+
+  .menu ul{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .lgac-section{
+    padding-top: 40px;
+  }
+
+  .lgac-content{
+    width: calc(100% - 24px);
+  }
+
+  .lgac-text h1{
+    font-size: 1.55rem;
+  }
+
+  .lgac-text p{
+    font-size: 1rem;
+    letter-spacing: .6px;
+  }
+
+  .title-line{
+    width: 180px;
+    height: 7px;
+  }
+
+  .lgac-visual{
+    min-height: 420px;
+  }
+
+  .portrait-wrap{
+    width: 280px;
+    top: 20px;
+  }
+
+  .green-band{
+    height: 100px;
+    top: 150px;
+  }
+
+  .frame-1{
+    height: 270px;
+    right: 14px;
+    top: 120px;
+  }
+
+  .frame-2{
+    width: 270px;
+    bottom: 44px;
+  }
+
+  .curve-1, .curve-2, .curve-3,
+  .star-2, .dot-accent,
+  .left-deco{
+    display: none;
+  }
+
+  .footer-content h2{
+    font-size: 2.2rem;
+  }
+
+  .footer-content p{
+    font-size: 1rem;
+  }
+}

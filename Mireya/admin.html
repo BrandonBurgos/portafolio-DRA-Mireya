@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel privado</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <section class="admin-login" id="loginView">
+    <div class="login-card">
+      <h1>Acceso privado</h1>
+      <p>Ingrese sus credenciales para editar el sitio.</p>
+
+      <form id="loginForm">
+        <label for="username">Usuario</label>
+        <input type="text" id="username" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Entrar</button>
+        <p class="error-msg" id="loginError"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="admin-panel hidden" id="panelView">
+    <aside class="admin-sidebar">
+      <h2>Panel de edición</h2>
+      <button id="logoutBtn" type="button">Cerrar sesión</button>
+      <a href="index.html" class="preview-link side-link">Ver sitio</a>
+    </aside>
+
+    <main class="admin-main">
+      <form id="editorForm" class="editor-form">
+
+        <!-- INDEX -->
+        <div class="form-block">
+          <h3>Inicio - Textos</h3>
+
+          <label for="indexTitle">Título</label>
+          <input type="text" id="indexTitle">
+
+          <label for="indexSubtitle">Subtítulo</label>
+          <input type="text" id="indexSubtitle">
+
+          <label for="indexDescription">Descripción</label>
+          <textarea id="indexDescription" rows="5"></textarea>
+
+          <label for="indexButtonText">Texto del botón</label>
+          <input type="text" id="indexButtonText">
+
+          <label for="indexKeywordsTitle">Título palabras clave</label>
+          <input type="text" id="indexKeywordsTitle">
+
+          <label>Palabras clave</label>
+          <input type="text" id="indexKeyword1" placeholder="Palabra clave 1">
+          <input type="text" id="indexKeyword2" placeholder="Palabra clave 2">
+          <input type="text" id="indexKeyword3" placeholder="Palabra clave 3">
+          <input type="text" id="indexKeyword4" placeholder="Palabra clave 4">
+        </div>
+
+        <div class="form-block">
+          <h3>Inicio - Carrusel</h3>
+          <div class="upload-grid" id="indexCarouselUploads"></div>
+        </div>
+
+        <div class="form-block">
+          <h3>Inicio - Collage</h3>
+          <div class="upload-grid" id="indexCollageUploads"></div>
+        </div>
+
+        <!-- CURSOS -->
+        <div class="form-block">
+          <h3>Cursos</h3>
+
+          <label for="coursesTitle">Título</label>
+          <input type="text" id="coursesTitle">
+
+          <label for="coursesLeft">Columna izquierda</label>
+          <textarea id="coursesLeft" rows="6" placeholder="Una línea por curso"></textarea>
+
+          <label for="coursesRight">Columna derecha</label>
+          <textarea id="coursesRight" rows="6" placeholder="Una línea por curso"></textarea>
+        </div>
+
+        <div class="form-block">
+          <h3>Cursos - Slider</h3>
+          <div class="upload-grid" id="coursesSliderUploads"></div>
+        </div>
+
+        <!-- LGAC -->
+        <div class="form-block">
+          <h3>LGAC-CP</h3>
+
+          <label for="lgacTitle">Título</label>
+          <textarea id="lgacTitle" rows="4"></textarea>
+
+          <label for="lgacLinkText">Texto del enlace</label>
+          <input type="text" id="lgacLinkText">
+
+          <label for="lgacLinkUrl">URL del enlace</label>
+          <input type="text" id="lgacLinkUrl">
+
+          <label for="lgacParagraph1">Párrafo 1</label>
+          <textarea id="lgacParagraph1" rows="5"></textarea>
+
+          <label for="lgacParagraph2">Párrafo 2</label>
+          <textarea id="lgacParagraph2" rows="5"></textarea>
+        </div>
+
+        <div class="form-block">
+          <h3>LGAC-CP - Imagen principal</h3>
+          <div class="upload-grid" id="lgacMainUpload"></div>
+        </div>
+
+        <!-- PUBLICACIONES -->
+        <div class="form-block">
+          <h3>Publicaciones</h3>
+
+          <label for="pubTitle">Título</label>
+          <input type="text" id="pubTitle">
+
+          <label for="pubLinkText">Texto enlace</label>
+          <input type="text" id="pubLinkText">
+
+          <label for="pubLinkUrl">URL enlace</label>
+          <input type="text" id="pubLinkUrl">
+
+          <label for="pubItems">Publicaciones</label>
+          <textarea id="pubItems" rows="14" placeholder="Una publicación por línea"></textarea>
+        </div>
+
+        <!-- ALUMNOS -->
+        <div class="form-block">
+          <h3>Alumnos Vigentes</h3>
+
+          <label for="vigentesTitleInput">Título</label>
+          <input type="text" id="vigentesTitleInput">
+
+          <div id="vigentesAdminList"></div>
+          <button type="button" id="addVigenteBtn" class="add-student-btn">Agregar alumno vigente</button>
+        </div>
+
+        <div class="form-block">
+          <h3>Alumnos Graduados</h3>
+
+          <label for="graduadosTitleInput">Título</label>
+          <input type="text" id="graduadosTitleInput">
+
+          <div id="graduadosAdminList"></div>
+          <button type="button" id="addGraduadoBtn" class="add-student-btn">Agregar alumno graduado</button>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="save-btn">Guardar cambios</button>
+          <button type="button" class="clear-btn" id="resetBtn">Restablecer todo</button>
+        </div>
+
+        <p id="saveMessage" class="save-message"></p>
+      </form>
+    </main>
+  </section>
+
+  <script src="admin.js"></script>
+</body>
+</html>

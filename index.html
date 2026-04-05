@@ -4,167 +4,127 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dra. Mireya Burgos Hernández</title>
-  <link rel="stylesheet" href="estilosP.css">
+
+  <link rel="stylesheet" href="css/estilosP.css">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="logo-left">
-    <img src="imagenesIndex/logo1.png" alt="Logo 1">
-  </div>
-  <div class="menu">
-    <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="cursos.html">Cursos</a></li>
-      <li><a href="alumnos.html">Alumnos</a></li>
-      <li><a href="#">LGAC-CP</a></li>
-      <li><a href="#">Publicaciones</a></li>
-      <li><a href="#" class="language-btn"><i class="fa-solid fa-globe"></i> <span id="lang-text">ES</span></a></li>
-    </ul>
-  </div>
-  <div class="logo-right">
-    <img src="imagenesIndex/logo2.png" alt="Logo 2">
-    <img src="imagenesIndex/logo3.png" alt="Logo 3">
-  </div>
-</nav>
-
-<!-- HEADER -->
-<header>
-  <div class="header-content">
-    <h1 id="title">DRA. MIREYA BURGOS</h1>
-    <p id="subtitle">Profesora Investigadora</p>
-    <div class="descripcion" id="description">
-      Investigadora Nacional Nivel I, especializada en sistemática, evolución y genética de poblaciones de plantas. Mi trabajo se enfoca en la conservación y aprovechamiento de la biodiversidad vegetal de México, integrando investigación, docencia y formación de nuevos especialistas.
-    </div>
-    <button id="readMore">Leer más</button>
-  </div>
-</header>
-
-<!-- CAROUSEL -->
-<section class="seccion-carousel">
-  <div class="carousel-container">
-    <button class="prev">❮</button>
-    <div class="carousel">
-      <div class="carousel-item"><img></div>
-      <div class="carousel-item"><img></div>
-      <div class="carousel-item"><img></div>
-      <div class="carousel-item"><img></div>
-      <div class="carousel-item"><img></div>
-      <div class="carousel-item"><img></div>
-    </div>
-    <button class="next">❯</button>
-  </div>
-</section>
-
-<!-- COLLAGE -->
-<section class="seccion-collage">
-  <div class="collage-container">
-
-    <div class="collage">
-      <div class="collage-track">
-        <div class="column">
-          <img>
-          <img>
-          <img>
-          <img>
-          <img>
-          <img>
-        </div>
-      </div>
-
-      <div class="collage-track1">
-        <div class="column">
-          <img>
-          <img>
-          <img>
-          <img>
-          <img>
-          <img>
-        </div>
-      </div>
-
-      <div class="collage-track">
-        <div class="column">
-          <img>
-          <img>
-          <img>
-          <img>
-          <img>
-          <img>
-        </div>
-      </div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo-left">
+      <img src="imagenesIndex/logo1.png" alt="Logo 1">
     </div>
 
-    <!-- PALABRAS CLAVE -->
-    <div class="highlights">
-      <h2>Palabras Clave</h2>
+    <div class="menu">
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="html/cursos.html">Cursos</a></li>
+        <li><a href="html/alumnos.html">Alumnos</a></li>
+        <li><a href="html/LGAC-CP.html">LGAC-CP</a></li>
+        <li><a href="html/publicaciones.html">Publicaciones</a></li>
+        <li><a href="#" class="language-btn"><span id="lang-text">ES</span></a></li>
       </ul>
     </div>
 
-  </div>
-</section>
+    <div class="logo-right">
+      <img src="imagenesIndex/logo2.png" alt="Logo 2">
+      <img src="imagenesIndex/logo3.png" alt="Logo 3">
+    </div>
+  </nav>
 
-<!-- FOOTER -->
-<footer>
-  <p>&copy; 2025 Dra. Mireya Burgos Hernández</p>
-</footer>
+  <!-- HEADER -->
+  <header>
+    <div class="header-content">
+      <h1 id="title">DRA. MIREYA BURGOS</h1>
+      <p id="subtitle">Profesora Investigadora</p>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="index.js"></script>
+      <div class="descripcion" id="description">
+        Investigadora Nacional Nivel I, especializada en sistemática, evolución y genética de poblaciones de plantas.
+        Mi trabajo se enfoca en la conservación y aprovechamiento de la biodiversidad vegetal de México,
+        integrando investigación, docencia y formación de nuevos especialistas.
+      </div>
 
-<!-- CARGA DINÁMICA -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+      <button id="readMore">Leer más</button>
+    </div>
+  </header>
 
-  const titleEl = document.getElementById("title");
-  const subtitleEl = document.getElementById("subtitle");
-  const descriptionEl = document.getElementById("description");
-  const buttonEl = document.getElementById("readMore");
+  <!-- CAROUSEL -->
+  <section class="seccion-carousel">
+    <div class="carousel-container">
+      <button class="prev" type="button">❮</button>
 
-  const title = localStorage.getItem("title");
-  const subtitle = localStorage.getItem("subtitle");
-  const description = localStorage.getItem("description");
-  const buttonText = localStorage.getItem("buttonText");
+      <div class="carousel">
+        <div class="carousel-item"><img alt="Imagen carrusel 1"></div>
+        <div class="carousel-item"><img alt="Imagen carrusel 2"></div>
+        <div class="carousel-item"><img alt="Imagen carrusel 3"></div>
+        <div class="carousel-item"><img alt="Imagen carrusel 4"></div>
+        <div class="carousel-item"><img alt="Imagen carrusel 5"></div>
+        <div class="carousel-item"><img alt="Imagen carrusel 6"></div>
+      </div>
 
-  if (title) titleEl.textContent = title;
-  if (subtitle) subtitleEl.textContent = subtitle;
-  if (description) descriptionEl.textContent = description;
-  if (buttonText) buttonEl.textContent = buttonText;
+      <button class="next" type="button">❯</button>
+    </div>
+  </section>
 
-  const carouselImgs = document.querySelectorAll(".carousel img");
-  carouselImgs.forEach((img, i) => {
-    const saved = localStorage.getItem("carousel" + (i + 1));
-    if (saved) img.src = saved;
-  });
+  <!-- COLLAGE -->
+  <section class="seccion-collage">
+    <div class="collage-container">
+      <div class="collage">
+        <div class="collage-track">
+          <div class="column">
+            <img alt="Collage 1">
+            <img alt="Collage 2">
+            <img alt="Collage 3">
+            <img alt="Collage 4">
+            <img alt="Collage 5">
+            <img alt="Collage 6">
+          </div>
+        </div>
 
-  const collageImgs = document.querySelectorAll(".collage img");
-  collageImgs.forEach((img, i) => {
-    const saved = localStorage.getItem("collage" + (i + 1));
-    if (saved) img.src = saved;
-  });
+        <div class="collage-track1">
+          <div class="column">
+            <img alt="Collage 7">
+            <img alt="Collage 8">
+            <img alt="Collage 9">
+            <img alt="Collage 10">
+            <img alt="Collage 11">
+            <img alt="Collage 12">
+          </div>
+        </div>
 
-});
-</script>
+        <div class="collage-track">
+          <div class="column">
+            <img alt="Collage 13">
+            <img alt="Collage 14">
+            <img alt="Collage 15">
+            <img alt="Collage 16">
+            <img alt="Collage 17">
+            <img alt="Collage 18">
+          </div>
+        </div>
+      </div>
 
+      <div class="highlights">
+        <h2 id="keywordsTitle">Palabras Clave</h2>
+        <ul id="keywordsList">
+          <li>Dataciones moleculares</li>
+          <li>Taxonomía</li>
+          <li>Evolución</li>
+          <li>Curso de botánica sistemática</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
+  <div class="side-line"></div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Dra. Mireya Burgos Hernández</p>
   </footer>
 
-   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="index.js"></script>
-
-   
+  <script src="js/index.js"></script>
 </body>
 </html>
