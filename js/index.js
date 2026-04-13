@@ -4,6 +4,7 @@ const defaultData = {
   description:
     "Investigadora Nacional Nivel I, especializada en sistemática, evolución y genética de poblaciones de plantas. Mi trabajo se enfoca en la conservación y aprovechamiento de la biodiversidad vegetal de México, integrando investigación, docencia y formación de nuevos especialistas.",
   buttonText: "Leer más",
+  buttonUrl: "html/alumnos.html",
   keywordsTitle: "Palabras Clave",
   keywords: [
     "Dataciones moleculares",
@@ -20,12 +21,12 @@ function normalizeIndexData(parsed) {
     return { ...defaultData };
   }
 
-  // Formato nuevo: { index: {...} }
   if (parsed.index && typeof parsed.index === "object") {
     return {
       ...defaultData,
       ...parsed.index,
       buttonText: parsed.index.buttonText || defaultData.buttonText,
+      buttonUrl: parsed.index.buttonUrl || defaultData.buttonUrl,
       keywords: Array.isArray(parsed.index.keywords)
         ? parsed.index.keywords
         : defaultData.keywords,
@@ -38,17 +39,25 @@ function normalizeIndexData(parsed) {
     };
   }
 
-  // Formato viejo/plano: { title, subtitle, button, carousel, collage, keywords }
   return {
     ...defaultData,
     title: parsed.title || defaultData.title,
     subtitle: parsed.subtitle || defaultData.subtitle,
     description: parsed.description || defaultData.description,
     buttonText: parsed.buttonText || parsed.button || defaultData.buttonText,
+    buttonUrl: parsed.buttonUrl || parsed.buttonLink || defaultData.buttonUrl,
     keywordsTitle: parsed.keywordsTitle || defaultData.keywordsTitle,
     keywords: Array.isArray(parsed.keywords) ? parsed.keywords : defaultData.keywords,
-    carouselImages: Array.isArray(parsed.carousel) ? parsed.carousel : defaultData.carouselImages,
-    collageImages: Array.isArray(parsed.collage) ? parsed.collage : defaultData.collageImages
+    carouselImages: Array.isArray(parsed.carousel)
+      ? parsed.carousel
+      : Array.isArray(parsed.carouselImages)
+      ? parsed.carouselImages
+      : defaultData.carouselImages,
+    collageImages: Array.isArray(parsed.collage)
+      ? parsed.collage
+      : Array.isArray(parsed.collageImages)
+      ? parsed.collageImages
+      : defaultData.collageImages
   };
 }
 
@@ -73,11 +82,22 @@ function applyTextContent(data) {
   const keywordsTitleEl = document.getElementById("keywordsTitle");
   const keywordsListEl = document.getElementById("keywordsList");
 
-  if (titleEl) titleEl.textContent = data.title;
-  if (subtitleEl) subtitleEl.textContent = data.subtitle;
-  if (descriptionEl) descriptionEl.textContent = data.description;
-  if (buttonEl) buttonEl.textContent = data.buttonText;
-  if (keywordsTitleEl) keywordsTitleEl.textContent = data.keywordsTitle;
+  if (titleEl) titleEl.textContent = data.title || "";
+  if (subtitleEl) subtitleEl.textContent = data.subtitle || "";
+  if (descriptionEl) descriptionEl.textContent = data.description || "";
+  if (keywordsTitleEl) keywordsTitleEl.textContent = data.keywordsTitle || "";
+
+  if (buttonEl) {
+    buttonEl.textContent = data.buttonText || "Leer más";
+
+    if (buttonEl.tagName.toLowerCase() === "a") {
+      buttonEl.setAttribute("href", data.buttonUrl || "html/alumnos.html");
+    } else {
+      buttonEl.onclick = () => {
+        window.location.href = data.buttonUrl || "html/alumnos.html";
+      };
+    }
+  }
 
   if (keywordsListEl) {
     keywordsListEl.innerHTML = "";
@@ -93,8 +113,10 @@ function applyImages(selector, imagesArray) {
   const imgElements = document.querySelectorAll(selector);
 
   imgElements.forEach((img, index) => {
-    if (imagesArray[index]) {
-      img.src = imagesArray[index];
+    const src = imagesArray?.[index];
+
+    if (src && typeof src === "string" && src.trim() !== "") {
+      img.src = src;
     }
   });
 }

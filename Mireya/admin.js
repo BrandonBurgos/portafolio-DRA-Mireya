@@ -1,6 +1,9 @@
 const ADMIN_USER = "mireya-admin";
 const ADMIN_PASS = "Botanica2025!";
 
+const MAX_IMAGE_SIZE_MB = 2;
+const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024;
+
 const defaultSiteData = {
   index: {
     title: "DRA. MIREYA BURGOS",
@@ -8,6 +11,7 @@ const defaultSiteData = {
     description:
       "Investigadora Nacional Nivel I, especializada en sistemática, evolución y genética de poblaciones de plantas. Mi trabajo se enfoca en la conservación y aprovechamiento de la biodiversidad vegetal de México, integrando investigación, docencia y formación de nuevos especialistas.",
     buttonText: "Leer más",
+    buttonUrl: "html/alumnos.html",
     keywordsTitle: "Palabras Clave",
     keywords: [
       "Dataciones moleculares",
@@ -93,57 +97,59 @@ function cloneDefaults() {
 }
 
 function normalizeSiteData(parsed) {
+  const defaults = cloneDefaults();
+
   return {
     index: {
-      ...cloneDefaults().index,
+      ...defaults.index,
       ...(parsed.index || {}),
       keywords: Array.isArray(parsed.index?.keywords)
         ? parsed.index.keywords
-        : cloneDefaults().index.keywords,
+        : defaults.index.keywords,
       carouselImages: Array.isArray(parsed.index?.carouselImages)
         ? parsed.index.carouselImages
-        : cloneDefaults().index.carouselImages,
+        : defaults.index.carouselImages,
       collageImages: Array.isArray(parsed.index?.collageImages)
         ? parsed.index.collageImages
-        : cloneDefaults().index.collageImages
+        : defaults.index.collageImages
     },
 
     cursos: {
-      ...cloneDefaults().cursos,
+      ...defaults.cursos,
       ...(parsed.cursos || {}),
       itemsLeft: Array.isArray(parsed.cursos?.itemsLeft)
         ? parsed.cursos.itemsLeft
-        : cloneDefaults().cursos.itemsLeft,
+        : defaults.cursos.itemsLeft,
       itemsRight: Array.isArray(parsed.cursos?.itemsRight)
         ? parsed.cursos.itemsRight
-        : cloneDefaults().cursos.itemsRight,
+        : defaults.cursos.itemsRight,
       sliderImages: Array.isArray(parsed.cursos?.sliderImages)
         ? parsed.cursos.sliderImages
-        : cloneDefaults().cursos.sliderImages
+        : defaults.cursos.sliderImages
     },
 
     lgac: {
-      ...cloneDefaults().lgac,
+      ...defaults.lgac,
       ...(parsed.lgac || {})
     },
 
     publicaciones: {
-      ...cloneDefaults().publicaciones,
+      ...defaults.publicaciones,
       ...(parsed.publicaciones || {}),
       items: Array.isArray(parsed.publicaciones?.items)
         ? parsed.publicaciones.items
-        : cloneDefaults().publicaciones.items
+        : defaults.publicaciones.items
     },
 
     alumnos: {
-      ...cloneDefaults().alumnos,
+      ...defaults.alumnos,
       ...(parsed.alumnos || {}),
       vigentes: Array.isArray(parsed.alumnos?.vigentes)
         ? parsed.alumnos.vigentes
-        : cloneDefaults().alumnos.vigentes,
+        : defaults.alumnos.vigentes,
       graduados: Array.isArray(parsed.alumnos?.graduados)
         ? parsed.alumnos.graduados
-        : cloneDefaults().alumnos.graduados
+        : defaults.alumnos.graduados
     }
   };
 }
@@ -162,16 +168,47 @@ function getSiteData() {
 }
 
 function saveSiteData(data) {
-  localStorage.setItem("siteData", JSON.stringify(data));
+  try {
+    localStorage.setItem("siteData", JSON.stringify(data));
+    return true;
+  } catch (error) {
+    console.error("Error guardando siteData:", error);
+
+    if (error.name === "QuotaExceededError") {
+      alert(
+        "No se pudo guardar porque las imágenes son demasiado pesadas para el almacenamiento del navegador. Usa imágenes más ligeras."
+      );
+    } else {
+      alert("Ocurrió un error al guardar los cambios.");
+    }
+
+    return false;
+  }
 }
 
 function readFileAsDataURL(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
+    reader.onerror = () => reject(new Error("No se pudo leer el archivo."));
     reader.readAsDataURL(file);
   });
+}
+
+function isValidImage(file) {
+  if (!file) return false;
+
+  if (!file.type.startsWith("image/")) {
+    alert("El archivo seleccionado no es una imagen válida.");
+    return false;
+  }
+
+  if (file.size > MAX_IMAGE_SIZE_BYTES) {
+    alert(`La imagen es demasiado pesada. Usa una menor a ${MAX_IMAGE_SIZE_MB} MB.`);
+    return false;
+  }
+
+  return true;
 }
 
 function createUploadInputs(containerId, total, group, field) {
@@ -262,43 +299,38 @@ function renderStudentsAdminList(containerId, students, tipo) {
 }
 
 function fillForm(data) {
-  // INDEX
   document.getElementById("indexTitle").value = data.index.title || "";
   document.getElementById("indexSubtitle").value = data.index.subtitle || "";
   document.getElementById("indexDescription").value = data.index.description || "";
   document.getElementById("indexButtonText").value = data.index.buttonText || "";
+  document.getElementById("indexButtonUrl").value = data.index.buttonUrl || "";
   document.getElementById("indexKeywordsTitle").value = data.index.keywordsTitle || "";
   document.getElementById("indexKeyword1").value = data.index.keywords?.[0] || "";
   document.getElementById("indexKeyword2").value = data.index.keywords?.[1] || "";
   document.getElementById("indexKeyword3").value = data.index.keywords?.[2] || "";
   document.getElementById("indexKeyword4").value = data.index.keywords?.[3] || "";
 
-  // CURSOS
   document.getElementById("coursesTitle").value = data.cursos.title || "";
   document.getElementById("coursesLeft").value = (data.cursos.itemsLeft || []).join("\n");
   document.getElementById("coursesRight").value = (data.cursos.itemsRight || []).join("\n");
 
-  // LGAC
   document.getElementById("lgacTitle").value = data.lgac.title || "";
   document.getElementById("lgacLinkText").value = data.lgac.linkText || "";
   document.getElementById("lgacLinkUrl").value = data.lgac.linkUrl || "";
   document.getElementById("lgacParagraph1").value = data.lgac.paragraph1 || "";
   document.getElementById("lgacParagraph2").value = data.lgac.paragraph2 || "";
 
-  // PUBLICACIONES
   document.getElementById("pubTitle").value = data.publicaciones.title || "";
   document.getElementById("pubLinkText").value = data.publicaciones.linkText || "";
   document.getElementById("pubLinkUrl").value = data.publicaciones.linkUrl || "";
   document.getElementById("pubItems").value = (data.publicaciones.items || []).join("\n");
 
-  // ALUMNOS
   document.getElementById("vigentesTitleInput").value = data.alumnos.vigentesTitle || "";
   document.getElementById("graduadosTitleInput").value = data.alumnos.graduadosTitle || "";
 
   renderStudentsAdminList("vigentesAdminList", data.alumnos.vigentes || [], "vigentes");
   renderStudentsAdminList("graduadosAdminList", data.alumnos.graduados || [], "graduados");
 
-  // previews
   (data.index.carouselImages || []).forEach((src, i) => {
     const img = document.getElementById(`indexCarousel_carouselImages_${i}`);
     if (img) img.src = src || "";
@@ -328,6 +360,7 @@ function collectFormData(current) {
       subtitle: document.getElementById("indexSubtitle").value.trim(),
       description: document.getElementById("indexDescription").value.trim(),
       buttonText: document.getElementById("indexButtonText").value.trim(),
+      buttonUrl: document.getElementById("indexButtonUrl").value.trim(),
       keywordsTitle: document.getElementById("indexKeywordsTitle").value.trim(),
       keywords: [
         document.getElementById("indexKeyword1").value.trim(),
@@ -340,8 +373,16 @@ function collectFormData(current) {
     cursos: {
       ...current.cursos,
       title: document.getElementById("coursesTitle").value.trim(),
-      itemsLeft: document.getElementById("coursesLeft").value.split("\n").map(v => v.trim()).filter(Boolean),
-      itemsRight: document.getElementById("coursesRight").value.split("\n").map(v => v.trim()).filter(Boolean)
+      itemsLeft: document
+        .getElementById("coursesLeft")
+        .value.split("\n")
+        .map(v => v.trim())
+        .filter(Boolean),
+      itemsRight: document
+        .getElementById("coursesRight")
+        .value.split("\n")
+        .map(v => v.trim())
+        .filter(Boolean)
     },
 
     lgac: {
@@ -358,7 +399,11 @@ function collectFormData(current) {
       title: document.getElementById("pubTitle").value.trim(),
       linkText: document.getElementById("pubLinkText").value.trim(),
       linkUrl: document.getElementById("pubLinkUrl").value.trim(),
-      items: document.getElementById("pubItems").value.split("\n").map(v => v.trim()).filter(Boolean)
+      items: document
+        .getElementById("pubItems")
+        .value.split("\n")
+        .map(v => v.trim())
+        .filter(Boolean)
     },
 
     alumnos: {
@@ -401,7 +446,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fillForm(siteData);
   }
 
-  loginForm.addEventListener("submit", (e) => {
+  loginForm.addEventListener("submit", e => {
     e.preventDefault();
 
     const user = document.getElementById("username").value.trim();
@@ -409,6 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (user === ADMIN_USER && pass === ADMIN_PASS) {
       sessionStorage.setItem("adminAuthenticated", "true");
+      siteData = getSiteData();
       showPanel();
       fillForm(siteData);
       loginError.textContent = "";
@@ -432,7 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderStudentsAdminList("graduadosAdminList", siteData.alumnos.graduados, "graduados");
   });
 
-  document.addEventListener("input", (e) => {
+  document.addEventListener("input", e => {
     const el = e.target;
     const tipo = el.dataset.tipo;
     const index = Number(el.dataset.index);
@@ -444,7 +490,7 @@ document.addEventListener("DOMContentLoaded", () => {
     siteData.alumnos[tipo][index][field] = el.value;
   });
 
-  document.addEventListener("change", async (e) => {
+  document.addEventListener("change", async e => {
     const input = e.target;
 
     if (input.matches('input[type="file"]') && input.dataset.group) {
@@ -454,16 +500,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const file = input.files?.[0];
 
       if (!file) return;
+      if (!isValidImage(file)) {
+        input.value = "";
+        return;
+      }
 
-      const base64 = await readFileAsDataURL(file);
+      try {
+        const base64 = await readFileAsDataURL(file);
 
-      if (group === "indexCarousel") siteData.index.carouselImages[index] = base64;
-      if (group === "indexCollage") siteData.index.collageImages[index] = base64;
-      if (group === "coursesSlider") siteData.cursos.sliderImages[index] = base64;
-      if (group === "lgacMain") siteData.lgac.mainImage = base64;
+        if (group === "indexCarousel") siteData.index.carouselImages[index] = base64;
+        if (group === "indexCollage") siteData.index.collageImages[index] = base64;
+        if (group === "coursesSlider") siteData.cursos.sliderImages[index] = base64;
+        if (group === "lgacMain") siteData.lgac.mainImage = base64;
 
-      const preview = document.getElementById(`${group}_${field}_${index}`);
-      if (preview) preview.src = base64;
+        const preview = document.getElementById(`${group}_${field}_${index}`);
+        if (preview) preview.src = base64;
+      } catch (error) {
+        console.error(error);
+        alert("No se pudo cargar la imagen.");
+      }
     }
 
     if (input.dataset.uploadStudent) {
@@ -472,24 +527,35 @@ document.addEventListener("DOMContentLoaded", () => {
       const file = input.files?.[0];
 
       if (!file) return;
+      if (!isValidImage(file)) {
+        input.value = "";
+        return;
+      }
 
-      const base64 = await readFileAsDataURL(file);
-      siteData.alumnos[tipo][index].foto = base64;
+      try {
+        const base64 = await readFileAsDataURL(file);
+        siteData.alumnos[tipo][index].foto = base64;
 
-      renderStudentsAdminList(
-        tipo === "vigentes" ? "vigentesAdminList" : "graduadosAdminList",
-        siteData.alumnos[tipo],
-        tipo
-      );
+        renderStudentsAdminList(
+          tipo === "vigentes" ? "vigentesAdminList" : "graduadosAdminList",
+          siteData.alumnos[tipo],
+          tipo
+        );
+      } catch (error) {
+        console.error(error);
+        alert("No se pudo cargar la foto del alumno.");
+      }
     }
   });
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener("click", e => {
     const btn = e.target.closest("[data-delete-student]");
     if (!btn) return;
 
     const tipo = btn.dataset.deleteStudent;
     const index = Number(btn.dataset.index);
+
+    if (!siteData.alumnos[tipo]) return;
 
     siteData.alumnos[tipo].splice(index, 1);
 
@@ -500,20 +566,38 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  editorForm.addEventListener("submit", (e) => {
+  editorForm.addEventListener("submit", e => {
     e.preventDefault();
+
     siteData = collectFormData(siteData);
-    saveSiteData(siteData);
-    saveMessage.textContent = "Cambios guardados correctamente.";
-    setTimeout(() => saveMessage.textContent = "", 2500);
+    const saved = saveSiteData(siteData);
+
+    if (saved) {
+      saveMessage.textContent = "Cambios guardados correctamente.";
+    } else {
+      saveMessage.textContent = "No se pudieron guardar los cambios.";
+    }
+
+    setTimeout(() => {
+      saveMessage.textContent = "";
+    }, 2500);
   });
 
   resetBtn.addEventListener("click", () => {
     if (!confirm("¿Deseas restablecer todo el contenido?")) return;
+
     siteData = cloneDefaults();
-    saveSiteData(siteData);
-    fillForm(siteData);
-    saveMessage.textContent = "Contenido restablecido.";
-    setTimeout(() => saveMessage.textContent = "", 2500);
+    const saved = saveSiteData(siteData);
+
+    if (saved) {
+      fillForm(siteData);
+      saveMessage.textContent = "Contenido restablecido.";
+    } else {
+      saveMessage.textContent = "No se pudo restablecer el contenido.";
+    }
+
+    setTimeout(() => {
+      saveMessage.textContent = "";
+    }, 2500);
   });
 });
