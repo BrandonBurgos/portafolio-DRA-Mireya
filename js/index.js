@@ -121,43 +121,37 @@ function applyImages(selector, imagesArray) {
   });
 }
 
-function updateCarousel() {
-  images.forEach((img, i) => {
-    let offset = i - currentIndex;
+function initCarousel() {
+  const images = document.querySelectorAll(".carousel img");
+  const prev = document.querySelector(".prev");
+  const next = document.querySelector(".next");
 
-    if (offset > images.length / 2) offset -= images.length;
-    if (offset < -images.length / 2) offset += images.length;
+  if (!images.length || !prev || !next) return;
 
-    img.style.position = "absolute";
-    img.style.transition = "transform 0.4s ease, opacity 0.4s ease, z-index 0.4s ease";
+  let currentIndex = Math.min(2, images.length - 1);
 
-    if (offset === 0) {
-      img.style.transform = "translateX(0) scale(1.2)";
-      img.style.zIndex = "5";
-      img.style.opacity = "1";
-    } else if (offset === -1) {
-      img.style.transform = "translateX(-220px) scale(1)";
-      img.style.zIndex = "4";
-      img.style.opacity = "0.9";
-    } else if (offset === 1) {
-      img.style.transform = "translateX(220px) scale(1)";
-      img.style.zIndex = "4";
-      img.style.opacity = "0.9";
-    } else if (offset === -2) {
-      img.style.transform = "translateX(-420px) scale(0.8)";
-      img.style.zIndex = "3";
-      img.style.opacity = "0.6";
-    } else if (offset === 2) {
-      img.style.transform = "translateX(420px) scale(0.8)";
-      img.style.zIndex = "3";
-      img.style.opacity = "0.6";
-    } else {
-      img.style.transform = "translateX(0) scale(0.6)";
-      img.style.zIndex = "1";
-      img.style.opacity = "0";
-    }
-  });
+  function updateCarousel() {
+    images.forEach((img, i) => {
+      const offset = i - currentIndex;
 
+      if (offset === 0) {
+        img.style.transform = "translateX(0) scale(1.2)";
+        img.style.zIndex = "3";
+        img.style.opacity = "1";
+      } else if (offset === -1 || offset === 1) {
+        img.style.transform = `translateX(${offset * 220}px) scale(1)`;
+        img.style.zIndex = "2";
+        img.style.opacity = "0.9";
+      } else if (offset === -2 || offset === 2) {
+        img.style.transform = `translateX(${offset * 220}px) scale(0.8)`;
+        img.style.zIndex = "1";
+        img.style.opacity = "0.7";
+      } else {
+        img.style.opacity = "0";
+        img.style.zIndex = "0";
+      }
+    });
+  }
 
   prev.addEventListener("click", () => {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
