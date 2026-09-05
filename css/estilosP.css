@@ -520,23 +520,34 @@ button.next {
 
 
 /* =========================================================
-   17. SECCIÓN DEL COLLAGE
+   17. SECCIÓN COLLAGE
    ========================================================= */
 
 .seccion-collage {
   width: 100%;
+  position: relative;
+
+  padding: 80px 20px;
+
+  overflow: hidden;
 }
+
+
+/* =========================================================
+   CONTENEDOR GENERAL
+   ========================================================= */
 
 .collage-container {
   position: relative;
 
   width: min(1200px, 95%);
 
-  min-height: 900px;
+  height: 650px;
 
-  margin: 100px auto;
+  margin: 0 auto;
 
   display: flex;
+
   justify-content: center;
   align-items: flex-start;
 
@@ -553,23 +564,32 @@ button.next {
    ========================================================= */
 
 .collage {
-  display: flex;
-
-  gap: 20px;
+  position: relative;
 
   flex: 1;
 
+  height: 650px;
+
+  display: flex;
+
   justify-content: center;
+  align-items: flex-start;
+
+  gap: 20px;
 
   overflow: hidden;
 }
 
-.collage .column {
+
+/* Cada columna puede desplazarse verticalmente */
+.collage-track,
+.collage-track1 {
+  position: relative;
+
+  height: max-content;
+
   display: flex;
-
   flex-direction: column;
-
-  gap: 15px;
 }
 
 
@@ -577,22 +597,15 @@ button.next {
    19. MOVIMIENTO DEL COLLAGE
    ========================================================= */
 
+/* Columna 1 y 3 */
 .collage-track {
-  display: flex;
-
-  flex-direction: column;
-
-  animation:
-    scrollDown 15s linear infinite;
+  animation: moverCollage 18s linear infinite;
 }
 
+
+/* Columna central en dirección contraria */
 .collage-track1 {
-  display: flex;
-
-  flex-direction: column;
-
-  animation:
-    scrollDown1 15s linear infinite;
+  animation: moverCollageContrario 18s linear infinite;
 }
 
 
@@ -600,12 +613,17 @@ button.next {
    20. IMÁGENES DEL COLLAGE
    ========================================================= */
 
+.collage .column {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
 .collage img {
-  width: clamp(
-    170px,
-    18vw,
-    260px
-  );
+  width: clamp(170px, 18vw, 260px);
 
   aspect-ratio: 3 / 5;
 
@@ -619,14 +637,49 @@ button.next {
   box-shadow:
     0 5px 15px rgba(0, 0, 0, 0.3);
 
-  transition:
-    transform 0.3s ease-in-out;
-
   background: #e7ece3;
+
+  flex-shrink: 0;
 }
 
-.collage img:hover {
-  transform: scale(1.03);
+
+/* =========================================================
+   ANIMACIÓN HACIA ARRIBA
+   ========================================================= */
+
+@keyframes moverCollage {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-45%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   ANIMACIÓN CONTRARIA
+   ========================================================= */
+
+@keyframes moverCollageContrario {
+
+  0% {
+    transform: translateY(-45%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-45%);
+  }
 }
 
 
