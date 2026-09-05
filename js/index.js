@@ -582,112 +582,103 @@ function initCarousel() {
     );
 
 
-  /* =========================================================
-     11. ACTUALIZAR POSICIÓN DE LAS IMÁGENES
-     ========================================================= */
+ /* =========================================================
+   11. ACTUALIZAR POSICIÓN DE LAS IMÁGENES
+   ========================================================= */
 
-  function updateCarousel() {
+function updateCarousel() {
 
-    const config =
-      getCarouselConfig();
+  const config = getCarouselConfig();
 
+  images.forEach((img, i) => {
 
-    images.forEach(
-      (img, i) => {
-
-        const offset =
-          getCircularOffset(
-            i,
-            currentIndex,
-            images.length
-          );
-
-
-        /* =====================================================
-           IMAGEN CENTRAL
-           ===================================================== */
-
-        if (offset === 0) {
-
-          img.style.transform = `
-            translate(-50%, -50%)
-            translateX(0)
-            scale(${config.centerScale})
-          `;
-
-          img.style.zIndex = "4";
-
-          img.style.opacity = "1";
-        }
-
-
-        /* =====================================================
-           IMAGEN INMEDIATAMENTE A LA IZQUIERDA O DERECHA
-           ===================================================== */
-
-        else if (
-          offset === -1 ||
-          offset === 1
-        ) {
-
-          img.style.transform = `
-            translate(-50%, -50%)
-            translateX(${offset * config.distance}px)
-            scale(${config.sideScale})
-          `;
-
-          img.style.zIndex = "3";
-
-          img.style.opacity = "0.9";
-        }
-
-
-        /* =====================================================
-           SEGUNDA IMAGEN DE CADA LADO
-           ===================================================== */
-
-        else if (
-          offset === -2 ||
-          offset === 2
-        ) {
-
-          /* En celular pequeño no mostramos esta capa */
-          if (!config.showFarImages) {
-
-            img.style.opacity = "0";
-
-            img.style.zIndex = "0";
-
-            return;
-          }
-
-
-          img.style.transform = `
-            translate(-50%, -50%)
-            translateX(${offset * config.distance}px)
-            scale(${config.farScale})
-          `;
-
-          img.style.zIndex = "2";
-
-          img.style.opacity = "0.6";
-        }
-
-
-        /* =====================================================
-           RESTO DE IMÁGENES
-           ===================================================== */
-
-        else {
-
-          img.style.opacity = "0";
-
-          img.style.zIndex = "0";
-        }
-      }
+    const offset = getCircularOffset(
+      i,
+      currentIndex,
+      images.length
     );
-  }
 
+
+    /* =====================================================
+       IMAGEN CENTRAL
+       ===================================================== */
+
+    if (offset === 0) {
+
+      img.style.transform = `
+        translateX(0)
+        scale(${config.centerScale})
+      `;
+
+      img.style.zIndex = "4";
+
+      img.style.opacity = "1";
+    }
+
+
+    /* =====================================================
+       IMAGEN INMEDIATA A LA IZQUIERDA O DERECHA
+       ===================================================== */
+
+    else if (
+      offset === -1 ||
+      offset === 1
+    ) {
+
+      img.style.transform = `
+        translateX(${offset * config.distance}px)
+        scale(${config.sideScale})
+      `;
+
+      img.style.zIndex = "3";
+
+      img.style.opacity = "0.9";
+    }
+
+
+    /* =====================================================
+       SEGUNDA IMAGEN DE CADA LADO
+       ===================================================== */
+
+    else if (
+      offset === -2 ||
+      offset === 2
+    ) {
+
+      /* En celular pequeño ocultamos las más lejanas */
+      if (!config.showFarImages) {
+
+        img.style.opacity = "0";
+
+        img.style.zIndex = "0";
+
+        return;
+      }
+
+
+      img.style.transform = `
+        translateX(${offset * config.distance}px)
+        scale(${config.farScale})
+      `;
+
+      img.style.zIndex = "2";
+
+      img.style.opacity = "0.6";
+    }
+
+
+    /* =====================================================
+       RESTO DE IMÁGENES
+       ===================================================== */
+
+    else {
+
+      img.style.opacity = "0";
+
+      img.style.zIndex = "0";
+    }
+  });
+}
 
   /* =========================================================
      12. BOTÓN ANTERIOR
