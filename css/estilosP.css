@@ -798,9 +798,10 @@ footer p {
 
 @media (max-width: 1024px) {
 
+  /* NAVBAR */
+
   .navbar {
     padding: 0 20px;
-
     gap: 10px;
   }
 
@@ -810,31 +811,43 @@ footer p {
     height: 65px;
   }
 
+
+  /* MENÚ */
+
   .navbar .menu ul {
     gap: 6px;
   }
 
   .navbar .menu ul li a {
     padding: 8px 12px;
-
     font-size: 0.85rem;
   }
 
+
+  /* HEADER */
+
   header {
     min-height: 650px;
-
     padding-top: 130px;
   }
 
+
+  /* CARRUSEL */
+
   .carousel-container {
     width: 100%;
-
     margin-top: -100px;
   }
+
+
+  /* COLLAGE */
 
   .collage-container {
     gap: 40px;
   }
+
+
+  /* PALABRAS CLAVE */
 
   .highlights {
     max-width: 220px;
@@ -848,7 +861,9 @@ footer p {
 
 @media (max-width: 768px) {
 
-  /* NAVBAR */
+  /* =====================================================
+     NAVBAR
+     ===================================================== */
 
   .navbar {
     position: relative;
@@ -877,7 +892,9 @@ footer p {
   }
 
 
-  /* MENÚ */
+  /* =====================================================
+     MENÚ
+     ===================================================== */
 
   .navbar .menu {
     width: 100%;
@@ -898,7 +915,9 @@ footer p {
   }
 
 
-  /* HEADER */
+  /* =====================================================
+     HEADER
+     ===================================================== */
 
   header {
     min-height: 570px;
@@ -915,7 +934,9 @@ footer p {
   }
 
 
-  /* CARRUSEL */
+  /* =====================================================
+     CARRUSEL
+     ===================================================== */
 
   .carousel-container {
     min-height: 400px;
@@ -930,12 +951,18 @@ footer p {
     min-height: 350px;
   }
 
+  .carousel-item {
+    width: 230px;
+    height: 310px;
+  }
+
   .carousel img {
-    width: clamp(
-      170px,
-      42vw,
-      230px
-    );
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    visibility: visible;
   }
 
   button.prev,
@@ -947,12 +974,16 @@ footer p {
   }
 
 
-  /* COLLAGE */
+  /* =====================================================
+     COLLAGE
+     ===================================================== */
 
   .collage-container {
     width: 95%;
 
-    min-height: auto;
+    height: 600px;
+
+    min-height: 600px;
 
     margin:
       60px auto;
@@ -961,35 +992,90 @@ footer p {
 
     align-items: center;
 
-    gap: 40px;
+    gap: 30px;
 
-    overflow: visible;
+    /*
+      IMPORTANTE:
+      evita que se vean todas las imágenes al mismo tiempo.
+    */
+    overflow: hidden;
   }
+
 
   .collage {
     width: 100%;
 
+    height: 520px;
+
+    min-height: 520px;
+
+    display: flex;
+
     justify-content: center;
 
-    gap: 12px;
+    align-items: flex-start;
 
-    max-height: 700px;
+    gap: 10px;
 
     overflow: hidden;
   }
 
-  .collage img {
-    width: clamp(
-      110px,
-      28vw,
-      180px
-    );
+
+  .collage-track,
+  .collage-track1 {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
   }
 
 
-  /* PALABRAS CLAVE */
+  .collage .column {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+  }
+
+
+  .collage img {
+    width: 100%;
+
+    max-width: 150px;
+
+    height: 220px;
+
+    aspect-ratio: auto;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+
+    visibility: visible;
+
+    opacity: 1;
+
+    flex-shrink: 0;
+  }
+
+
+  /* =====================================================
+     PALABRAS CLAVE
+     ===================================================== */
 
   .highlights {
+    width: 100%;
+
     max-width: 100%;
 
     text-align: center;
@@ -1019,11 +1105,12 @@ footer p {
 
 @media (max-width: 480px) {
 
-  /* NAVBAR */
+  /* =====================================================
+     NAVBAR
+     ===================================================== */
 
   .navbar {
-    padding:
-      10px;
+    padding: 10px;
   }
 
   .navbar .logo-left img,
@@ -1031,6 +1118,11 @@ footer p {
     width: 48px;
     height: 48px;
   }
+
+
+  /* =====================================================
+     MENÚ
+     ===================================================== */
 
   .navbar .menu ul {
     flex-direction: column;
@@ -1052,7 +1144,9 @@ footer p {
   }
 
 
-  /* HEADER */
+  /* =====================================================
+     HEADER
+     ===================================================== */
 
   header {
     min-height: 520px;
@@ -1080,7 +1174,9 @@ footer p {
   }
 
 
-  /* CARRUSEL */
+  /* =====================================================
+     CARRUSEL
+     ===================================================== */
 
   .carousel-container {
     min-height: 330px;
@@ -1089,15 +1185,38 @@ footer p {
 
     padding:
       20px 40px;
+
+    overflow: hidden;
   }
 
   .carousel {
     min-height: 300px;
   }
 
-  .carousel img {
+
+  /*
+    La tarjeta controla el tamaño.
+    La imagen ocupa toda la tarjeta.
+  */
+
+  .carousel-item {
     width: 170px;
+
+    height: 230px;
   }
+
+  .carousel img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    visibility: visible;
+  }
+
 
   button.prev,
   button.next {
@@ -1116,31 +1235,101 @@ footer p {
   }
 
 
-  /* COLLAGE */
+  /* =====================================================
+     COLLAGE
+     ===================================================== */
 
   .collage-container {
+    width: 100%;
+
+    height: 520px;
+
+    min-height: 520px;
+
     margin:
       40px auto;
+
+    padding:
+      0 10px;
+
+    gap: 20px;
+
+    overflow: hidden;
   }
+
 
   .collage {
-    gap: 8px;
+    width: 100%;
 
-    max-height: 600px;
+    height: 450px;
+
+    min-height: 450px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 6px;
+
+    overflow: hidden;
   }
 
-  .collage img {
-    width: 100px;
 
-    border-radius: 8px;
+  .collage-track,
+  .collage-track1 {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
   }
+
 
   .collage .column {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
     gap: 8px;
   }
 
 
-  /* PALABRAS CLAVE */
+  .collage img {
+    width: 100%;
+
+    max-width: 105px;
+
+    height: 160px;
+
+    aspect-ratio: auto;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+
+    visibility: visible;
+
+    opacity: 1;
+
+    border-radius: 8px;
+
+    flex-shrink: 0;
+  }
+
+
+  /* =====================================================
+     PALABRAS CLAVE
+     ===================================================== */
 
   .highlights h2 {
     font-size: 1.4rem;
@@ -1151,7 +1340,9 @@ footer p {
   }
 
 
-  /* FOOTER */
+  /* =====================================================
+     FOOTER
+     ===================================================== */
 
   footer p {
     font-size: 0.85rem;
